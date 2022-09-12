@@ -15,10 +15,10 @@ driver = webdriver.Chrome(service = s)
 def Add_Remove(): #1
     driver.get("https://the-internet.herokuapp.com/add_remove_elements/")
     time.sleep(1) # added sleep function just for better overview
-    for num in range(5):
+    for i in range(5):
         driver.find_element(By.XPATH,"/html/body/div[2]/div/div/button").click()  # adding new buttons //select and copy full xpath on selected button
     time.sleep(1)
-    for num in range(4):
+    for i in range(4):
         driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/button[1]").click() # removing new buttons
 
 def DropDown(): #2
@@ -31,15 +31,15 @@ def Dynamic(): #3
     driver.get("https://the-internet.herokuapp.com/dynamic_content")
     wait = WebDriverWait(driver, 10)
     img_list = []
-    for num in range(10):
+    for i in range(10):
         l1 = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/div[1]/img"))).get_attribute("src") # 1.image
         img_list.append(l1)
         l2 = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div/div[2]/div[1]/img"))).get_attribute("src") # 2.image
         img_list.append(l2)
         l3 = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div/div[3]/div[1]/img"))).get_attribute("src") # 3.image
         img_list.append(l3)
-        if(num==9):
-            print(img_list)
+        if(i==9):
+            [print(img_list.count(x), x) for x in set(img_list)]
         driver.refresh()
 
 Add_Remove() #1.Test
