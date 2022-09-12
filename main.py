@@ -27,10 +27,10 @@ def DropDown(): #2
 def Dynamic(): #3
     driver.get("https://the-internet.herokuapp.com/dynamic_content")
     for num in range(10):
-        print(driver.findElement(By.XPATH("/html/body/div[2]/div/div/div/div/div[1]/div[1]/img")).get_attribute('src'))
+        l1 = driver.find_element(By.XPATH("/html/body/div[2]/div/div/div/div/div[1]/div[1]/img")).get_attribute('src')
         #l2 = driver.findElement(By.XPATH("/html/body/div[2]/div/div/div/div/div[1]/div[2]/img")).get_attribute('src')
         #l3 = driver.findElement(By.XPATH("/html/body/div[2]/div/div/div/div/div[1]/div[3]/img")).get_attribute('src')
-
+        print(l1)
         driver.refresh()
 
 
