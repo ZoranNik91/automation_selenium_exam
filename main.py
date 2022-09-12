@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import random
+from array import *
 
 import time
 
@@ -21,10 +22,19 @@ def DropDown():
     driver.get("https://the-internet.herokuapp.com/dropdown")
     value = random.randint(2,3)
     driver.find_element(By.XPATH, f"//*[@id='dropdown']/option[{value}]").click() #adding random int in range of 2 and 3 inside value variable
+    time.sleep(1)
+
+def Dynamic():
+    print(img)
+    driver.get("https://the-internet.herokuapp.com/dynamic_content")
+    for num in range(10):
+        driver.refresh()
 
 
-Add_Remove() # 1.Test
-DropDown() # 2.Test
 
-#https://the-internet.herokuapp.com/dropdown  //*[@id="dropdown"]/option[3]
+Add_Remove() #1.Test
+DropDown() #2.Test
+Dynamic() #3.Test
+
+#for i in array:    print(array[i], end=" ")
 #time.sleep(5)
