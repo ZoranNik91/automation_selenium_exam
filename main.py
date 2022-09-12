@@ -4,8 +4,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
-import random
 from array import *
+import string
+import random
 import time
 
 s = Service("C://bin/chromedriver.exe")
@@ -45,6 +46,8 @@ def Dynamic(): #3
 def Alerts():
     driver.get("https://the-internet.herokuapp.com/javascript_alerts")
     wait = WebDriverWait(driver, 10)
+    letters = string.ascii_letters
+    random_string = ''.join(random.choice(letters) for i in range(10))
 
     driver.find_element(By.XPATH, "/html/body/div[2]/div/div/ul/li[1]/button").click() #JS ALert button
     wait.until(EC.alert_is_present())
@@ -58,7 +61,7 @@ def Alerts():
 
     driver.find_element(By.XPATH, "/html/body/div[2]/div/div/ul/li[3]/button").click()  # JS Prompt button
     wait.until(EC.alert_is_present())
-    driver.switch_to.alert.send_keys("Send Nudes")
+    driver.switch_to.alert.send_keys(random_string)
     time.sleep(1)
     driver.switch_to.alert.accept()
 
