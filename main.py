@@ -74,15 +74,28 @@ driver = webdriver.Chrome(service = s)
 
 def DOM():
     driver.get("https://the-internet.herokuapp.com/challenging_dom")
-    canv = driver.find_element(By.XPATH, '//*[@id="content"]/script').get_attribute("textContent") #remove -> /text() to fix the error (element is not an object)
-    print("-----------------------------------")
-    canv = canv.split("Answer: ",1)[1]  # geting the string number after "Answer: "
-    canv = int(canv.split("'")[0])      # spliting everything else after number and converting string to int
-    print(canv)
 
-    # driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[1]").click()  # qux button
-    # driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[2]").click()  # buz ALert button
-    # driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[3]").click()  # bar ALert button
+    def ReturnAnswer():
+        canv = driver.find_element(By.XPATH, '//*[@id="content"]/script').get_attribute("textContent") #remove -> /text() to fix the error (element is not an object)
+        canv = canv.split("Answer: ",1)[1]  # geting the string number after "Answer: "
+        canv = int(canv.split("'")[0])      # removing everything else after number and converting string to int
+        print(canv)
+        time.sleep(2)
+        return canv
+
+    time.sleep(2)
+    driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[1]").click()  # qux button
+    qux = ReturnAnswer()
+
+    driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[2]").click()  # buz ALert button
+    buz = ReturnAnswer()
+
+    driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[3]").click()  # bar ALert button
+    bar = ReturnAnswer()
+
+    sum = qux + buz + bar
+    print("SUM of all Answers: ")
+    print(sum)
 
 
 # Add_Remove()#1.Test
