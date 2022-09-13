@@ -74,19 +74,16 @@ driver = webdriver.Chrome(service = s)
 
 def DOM():
     driver.get("https://the-internet.herokuapp.com/challenging_dom")
-    canv = driver.find_element(By.XPATH, '//*[@id="content"]/script').get_attribute("textContent") #delete -> /text() to fix the error (element is not an object)
+    canv = driver.find_element(By.XPATH, '//*[@id="content"]/script').get_attribute("textContent") #remove -> /text() to fix the error (element is not an object)
     print("-----------------------------------")
+    canv = canv.split("Answer: ",1)[1]  # geting the string number after "Answer: "
+    canv = int(canv.split("'")[0])      # spliting everything else after number and converting string to int
     print(canv)
-
-
-    # action = ActionChains(driver)
-    # action.context_click(img).perform()
 
     # driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[1]").click()  # qux button
     # driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[2]").click()  # buz ALert button
     # driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[1]/a[3]").click()  # bar ALert button
-    # driver.get("https://www.ocr2edit.com/convert-to-txt")
-    # driver.find_element(By.XPATH, "/html/body/div[4]/div[3]/div[1]/div[1]/div/div/button").send_keys("C://Users/ZOHAN/Downloads/download.png")
+
 
 # Add_Remove()#1.Test
 # DropDown()  #2.Test
@@ -94,5 +91,4 @@ def DOM():
 # Alerts()    #4.Test
 DOM()         #5.test
 
-# https://the-internet.herokuapp.com/javascript_alerts
-#time.sleep(5)
+#comment
